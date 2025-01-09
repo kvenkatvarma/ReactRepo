@@ -11,6 +11,20 @@ export default class MainContent extends Component
             {id:5,name:"DEF",phone:null,address:{city:"Upl"},photo:"https://picsum.photos/id/1014/60"}       
          ]
     };
+    customerNameStyle=(custName)=>{
+        if(custName.startsWith('V'))
+        {
+        return {backgroundColor:"green"}
+        }
+        else if(custName.startsWith('D'))
+        {
+        return {backgroundColor:"gray"}
+        }
+        else if(custName.startsWith('N'))
+        {
+        return {backgroundColor:"purple"}
+        }
+    }
     render()
     {
         return (
@@ -52,7 +66,7 @@ export default class MainContent extends Component
                 <tr key={cust.id}>
                     <td>{cust.id}</td>
                     <td><img src={cust.photo} alt="Customer"></img></td>
-                    <td>{cust.name}</td>
+                    <td style={this.customerNameStyle(cust.name)}>{cust.name}</td>
                     <td>{this.getPhoneToRender(cust.phone)}</td>
                     <td>{cust.address.city}</td>
                 </tr>

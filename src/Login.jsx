@@ -4,7 +4,7 @@ export default class Login extends Component{
     {
      super(props);
      this.state={
-        email:"abc@gmail.com",password:"abc123"
+        email:"",password:"",message:""
      }
     }
 render(){
@@ -25,14 +25,29 @@ render(){
             this.setState({ password:event.target.value});
             }}/>
        </div>
-       <div>
-        <button className="btn btn-primary" onClick={this.onLoginClick}>Login</button>
+       <div className="text-right">
+        {this.state.message}
+        <button className="btn btn-primary m-1" onClick={this.onLoginClick}>Login</button>
+       
        </div>
     </div>
     );
 }
 onLoginClick=()=>
 {
-    console.log(this.state.email)
+    if(this.state.email == "admin@test.com" && this.state.password == "admin123")
+    {
+        //Success message to user
+        this.setState({
+            message : <span className="text-success">Successfully Logged in</span>
+        })
+    }
+    else
+    {
+        //error message
+        this.setState({
+            message : <span className="text-danger">Invalid Login, Please try again</span>
+        })
+    }
 }
 }

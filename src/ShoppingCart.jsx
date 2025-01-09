@@ -1,8 +1,12 @@
 import React,{Component} from "react";
 import Product from "./product";
 export default class ShoppingCart extends Component{
-
-    state={
+    //Executed when constructor is mounted(means execution started)
+    constructor(props){
+        console.log('constructor of shopping cart')
+        super(props);//Calling the parent class comstructor which is Component
+    //initialisation of state
+    this.state={
         products:[
             {id:1,productName:"iPhone",price:8900,quantity:0},
             {id:2,productName:"Sony Camera",price:4500,quantity:0},
@@ -11,8 +15,12 @@ export default class ShoppingCart extends Component{
             {id:5,productName:"Xbox",price:12400,quantity:0},
             {id:6,productName:"Dell Monitor",price:900,quantity:0}
         ],
+    };
     }
+
+   
     render(){
+        console.log('render method of shopping cart')
         return (
         <div className="container-fluid">
             <h4>Shopping Cart</h4>
@@ -29,6 +37,12 @@ export default class ShoppingCart extends Component{
             </div>
         </div>
         );
+    }
+    //Executes after constructor and render() including the life cycle of child components if any
+    componentDidMount()
+    {
+        console.log('componentDidMount of shopping cart');
+        
     }
     handleIncrement=(product,maxValue)=>{
      let allProducts = [...this.state.products];

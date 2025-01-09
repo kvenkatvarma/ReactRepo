@@ -19,7 +19,9 @@ export default class ShoppingCart extends Component{
             <div className="row">
                 {
                     this.state.products.map((prod)=>{
-                     return <Product key={prod.id} product={prod} onIncrement={this.handleIncrement} onDecrement={this.handleDecrement}>
+                     return <Product key={prod.id} product={prod} onIncrement={this.handleIncrement} onDecrement={this.handleDecrement} 
+                      onDelete={this.handleDelete}
+                     >
                         <button className="btn btn-primary">Buy Now</button>
                      </Product>
                     })
@@ -41,7 +43,7 @@ export default class ShoppingCart extends Component{
     
     };
     handleDecrement=(product,minVaue)=>{
-        let allProducts = [...this.state.products];
+     let allProducts = [...this.state.products];
      let index = allProducts.indexOf(product);
 
      if(allProducts[index].quantity > minVaue)
@@ -52,4 +54,15 @@ export default class ShoppingCart extends Component{
         })
      }    
     };
+    handleDelete=(product)=>{
+        let allProducts = [...this.state.products];
+        let index = allProducts.indexOf(product);
+        if(window.confirm("Are you sure to delete"))
+        {
+            allProducts.splice(index,1);
+            this.setState({
+                products:allProducts
+             });
+        }       
+    }
 }

@@ -16,7 +16,7 @@ export default class ShoppingCart extends Component{
             {id:6,productName:"Dell Monitor",price:900,quantity:0}
         ],
     };
-    }
+    };
 
    
     render(){
@@ -43,6 +43,10 @@ export default class ShoppingCart extends Component{
     {
         console.log('componentDidMount of shopping cart');
         
+    }
+    componentDidUpdate(prevProps,prevState)
+    {
+        console.log('componentDidUpdate of shopping cart',prevProps,prevState,this.props,this.state);
     }
     handleIncrement=(product,maxValue)=>{
      let allProducts = [...this.state.products];

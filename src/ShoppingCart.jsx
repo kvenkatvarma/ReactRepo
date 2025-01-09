@@ -19,11 +19,37 @@ export default class ShoppingCart extends Component{
             <div className="row">
                 {
                     this.state.products.map((prod)=>{
-                     return <Product key={prod.id} product={prod}/>
+                     return <Product key={prod.id} product={prod} onIncrement={this.handleIncrement} onDecrement={this.handleDecrement}>
+                        <button className="btn btn-primary">Buy Now</button>
+                     </Product>
                     })
                 }
             </div>
         </div>
         );
     }
+    handleIncrement=(product,maxValue)=>{
+     let allProducts = [...this.state.products];
+     let index = allProducts.indexOf(product);
+     if(allProducts[index].quantity < maxValue)
+     {
+        allProducts[index].quantity++;
+        this.setState({
+           products:allProducts
+        })
+     }
+    
+    };
+    handleDecrement=(product,minVaue)=>{
+        let allProducts = [...this.state.products];
+     let index = allProducts.indexOf(product);
+
+     if(allProducts[index].quantity > minVaue)
+     {
+        allProducts[index].quantity--;
+        this.setState({
+           products:allProducts
+        })
+     }    
+    };
 }

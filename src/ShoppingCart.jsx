@@ -48,6 +48,10 @@ export default class ShoppingCart extends Component{
     {
         console.log('componentDidUpdate of shopping cart',prevProps,prevState,this.props,this.state);
     }
+    componentWillUnmount()
+    {
+        console.log('componentWillUnmount of shopping cart');
+    }
     handleIncrement=(product,maxValue)=>{
      let allProducts = [...this.state.products];
      let index = allProducts.indexOf(product);

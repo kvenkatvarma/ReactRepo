@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 
 export default class Product extends Component{
-    state={product:this.props.product};
+    constructor(props)
+    {
+      super(props);      
+      console.log('constructor of Product cart')
+      this.state={product:this.props.product};
+    }
+   
      render(){
+      console.log('render of Product cart')
         
         return (
             <div className="col-lg-6">
@@ -32,8 +39,17 @@ export default class Product extends Component{
             </div>
         );
      }
-     componentWillUnmount()
+     componentDidMount()
     {
-        console.log('componentWillUnmount of Product');
+        console.log('componentDidMount of product');
+        
+    }
+    componentDidUpdate()
+    {
+        console.log('componentDidUpdate of product cart');
+    }
+    componentWillUnmount()
+    {
+        console.log('componentWillUnmount of product');
     }
 }

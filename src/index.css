@@ -3,6 +3,20 @@
     background-color: aqua;
 }
 .navbar-style{
-    background-color:  gray !important;
-  
+    background-color:  gray !important;  
+}
+.green-highlight
+{
+    color:green;
+    font-size: 40px;
+}
+.gray-highlight
+{
+    color:gray;
+    font-size: 25px;
+}
+.purple-highlight
+{
+    color:purple;
+    font-size: 25px;
 }

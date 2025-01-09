@@ -8,7 +8,7 @@ export default class ShoppingCart extends Component{
     //initialisation of state
     this.state={
         products:[
-            {id:1,productName:"iPhone",price:8900,quantity:0},
+            // {id:1,productName:"iPhone",price:8900,quantity:0},
             // {id:2,productName:"Sony Camera",price:4500,quantity:0},
             // {id:3,productName:"Samsung QLED TV",price:8900,quantity:0},
             // {id:4,productName:"iPad Pro",price:7745,quantity:0},
@@ -41,7 +41,16 @@ export default class ShoppingCart extends Component{
     //Executes after constructor and render() including the life cycle of child components if any
     componentDidMount()
     {
-        console.log('componentDidMount of shopping cart');
+       var promise = fetch('https://jsonplaceholder.typicode.com/posts',{method:"GET"});
+       promise.then((response)=>{
+       console.log(response);
+      var promise2 =  response.json();
+      promise2.then((posts)=>{
+       this.setState({
+         products:posts
+       })
+      });
+       })
         
     }
     componentDidUpdate(prevProps,prevState)
@@ -61,9 +70,9 @@ export default class ShoppingCart extends Component{
     handleIncrement=(product,maxValue)=>{
      let allProducts = [...this.state.products];
      let index = allProducts.indexOf(product);
-     if(allProducts[index].quantity < maxValue)
+     if(allProducts[index].id < maxValue)
      {
-        allProducts[index].quantity++;
+        allProducts[index].id++;
         this.setState({
            products:allProducts
         })
@@ -74,9 +83,9 @@ export default class ShoppingCart extends Component{
      let allProducts = [...this.state.products];
      let index = allProducts.indexOf(product);
 
-     if(allProducts[index].quantity > minVaue)
+     if(allProducts[index].id > minVaue)
      {
-        allProducts[index].quantity--;
+        allProducts[index].id--;
         this.setState({
            products:allProducts
         })

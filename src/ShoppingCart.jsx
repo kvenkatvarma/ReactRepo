@@ -52,6 +52,12 @@ export default class ShoppingCart extends Component{
     {
         console.log('componentWillUnmount of shopping cart');
     }
+    componentDidCatch(error,info)
+    {
+        console.log('componentDidCatch of shopping cart');    
+        console.log(error,info);    
+
+    }
     handleIncrement=(product,maxValue)=>{
      let allProducts = [...this.state.products];
      let index = allProducts.indexOf(product);

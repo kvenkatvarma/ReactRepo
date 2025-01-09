@@ -8,12 +8,7 @@ export default class ShoppingCart extends Component{
     //initialisation of state
     this.state={
         products:[
-            // {id:1,productName:"iPhone",price:8900,quantity:0},
-            // {id:2,productName:"Sony Camera",price:4500,quantity:0},
-            // {id:3,productName:"Samsung QLED TV",price:8900,quantity:0},
-            // {id:4,productName:"iPad Pro",price:7745,quantity:0},
-            // {id:5,productName:"Xbox",price:12400,quantity:0},
-            // {id:6,productName:"Dell Monitor",price:900,quantity:0}
+         
         ],
     };
     };
@@ -39,33 +34,25 @@ export default class ShoppingCart extends Component{
         );
     }
     //Executes after constructor and render() including the life cycle of child components if any
-    componentDidMount()
+     componentDidMount=async ()=>
     {
-       var promise = fetch('https://jsonplaceholder.typicode.com/posts',{method:"GET"});
-       promise.then((response)=>{
-       console.log(response);
-      var promise2 =  response.json();
-      promise2.then((posts)=>{
+       var response = await fetch('https://jsonplaceholder.typicode.com/posts',{method:"GET"});   
+       var prods = await response.json();   
        this.setState({
-         products:posts
+        products:prods
        })
-      });
-       })
-        
     }
     componentDidUpdate(prevProps,prevState)
     {
-        console.log('componentDidUpdate of shopping cart',prevProps,prevState,this.props,this.state);
+       
     }
     componentWillUnmount()
     {
-        console.log('componentWillUnmount of shopping cart');
+      
     }
     componentDidCatch(error,info)
     {
-        console.log('componentDidCatch of shopping cart');    
-        console.log(error,info);    
-
+       
     }
     handleIncrement=(product,maxValue)=>{
      let allProducts = [...this.state.products];

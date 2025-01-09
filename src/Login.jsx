@@ -33,14 +33,16 @@ render(){
     </div>
     );
 }
-onLoginClick=()=>
+onLoginClick=async ()=>
 {
-    if(this.state.email == "admin@test.com" && this.state.password == "admin123")
+    var response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${this.state.email}&name=${this.state.password}`,{method:"GET"});
+
+    var body =await response.json();
+    if(body.length > 0)
     {
-        //Success message to user
         this.setState({
             message : <span className="text-success">Successfully Logged in</span>
-        })
+        }) 
     }
     else
     {
@@ -49,5 +51,20 @@ onLoginClick=()=>
             message : <span className="text-danger">Invalid Login, Please try again</span>
         })
     }
+
+    // if(this.state.email == "admin@test.com" && this.state.password == "admin123")
+    // {
+    //     //Success message to user
+    //     this.setState({
+    //         message : <span className="text-success">Successfully Logged in</span>
+    //     })
+    // }
+    // else
+    // {
+    //     //error message
+    //     this.setState({
+    //         message : <span className="text-danger">Invalid Login, Please try again</span>
+    //     })
+    // }
 }
 }

@@ -20,7 +20,7 @@ export default class App extends Component{
       <NavBar isLoggedIn = {this.state.isLoggedIn}/>
       <div className="container-fluid">
       <Switch>  {/* Use Switch to wrap your Route components */}       
-        <Route path="/" exact component={Login} />  {/* Use the `component` prop in React Router v5 */}
+        <Route path="/" exact render={(props)=><Login {...props} updateIsLoggedInStatus={this.updateIsLoggedInStatus}/>} />  {/* Use the `component` prop in React Router v5 */}
         <Route path="/dashboard" exact component={Dashboard} />
         <Route path="/customers" exact component={CustomersList} />
         <Route path="/cart" exact component={ShoppingCart} />    
@@ -29,5 +29,10 @@ export default class App extends Component{
       </div>
     </BrowserRouter>
     )
+   }
+   updateIsLoggedInStatus=(status)=>{
+   this.setState({
+    isLoggedIn:status
+   });
    }
 }

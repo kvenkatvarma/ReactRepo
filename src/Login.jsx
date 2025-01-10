@@ -43,6 +43,8 @@ onLoginClick=async ()=>
         this.setState({
             message : <span className="text-success">Successfully Logged in</span>
         }) 
+        //Call the App component updateIsLoggedInStatus method
+        this.props.updateIsLoggedInStatus(true);
     }
     else
     {

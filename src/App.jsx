@@ -8,6 +8,7 @@ import CustomersList from "./CustomersList"
 import NoMatchPage from "./NoMatchPage"
 import history from "./history"
 import { Router } from "react-router-dom/cjs/react-router-dom.min"
+import SideBar from "./SideBar"
 export default class App extends Component{
   constructor(props){
     super(props);
@@ -21,13 +22,24 @@ export default class App extends Component{
       <Router history={history}>
       <NavBar isLoggedIn = {this.state.isLoggedIn} updateIsLoggedInStatus={this.updateIsLoggedInStatus}/>
       <div className="container-fluid">
-      <Switch>  {/* Use Switch to wrap your Route components */}       
-        <Route path="/" exact render={(props)=><Login {...props} updateIsLoggedInStatus={this.updateIsLoggedInStatus}/>} />  {/* Use the `component` prop in React Router v5 */}
-        <Route path="/dashboard" exact component={Dashboard} />
-        <Route path="/customers" exact component={CustomersList} />
-        <Route path="/cart" exact component={ShoppingCart} />    
-        <Route path="*"  component={NoMatchPage} />
-      </Switch>
+        <div className="row">
+          <div className="col-lg-3">
+            {
+              this.state.isLoggedIn ? <SideBar></SideBar> : ""
+            }
+          
+          </div>
+          <div className="col-lg-9">
+          <Switch>  {/* Use Switch to wrap your Route components */}       
+            <Route path="/" exact render={(props)=><Login {...props} updateIsLoggedInStatus={this.updateIsLoggedInStatus}/>} />  {/* Use the `component` prop in React Router v5 */}
+            <Route path="/dashboard" exact component={Dashboard} />
+            <Route path="/customers" exact component={CustomersList} />
+            <Route path="/cart" exact component={ShoppingCart} />    
+            <Route path="*"  component={NoMatchPage} />
+         </Switch>
+          </div>
+        </div>
+    
       </div>
     </Router>
     )

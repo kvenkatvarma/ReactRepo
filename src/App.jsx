@@ -5,6 +5,7 @@ import ShoppingCart from "./ShoppingCart"
 import Dashboard from "./Dashboard"
 import { Route, Switch,BrowserRouter } from "react-router-dom"; 
 import CustomersList from "./CustomersList"
+import NoMatchPage from "./NoMatchPage"
 export default class App extends Component{
    render(){
     return(
@@ -15,7 +16,8 @@ export default class App extends Component{
         <Route path="/" exact component={Login} />  {/* Use the `component` prop in React Router v5 */}
         <Route path="/dashboard" exact component={Dashboard} />
         <Route path="/customers" exact component={CustomersList} />
-        <Route path="/cart" exact component={ShoppingCart} />       
+        <Route path="/cart" exact component={ShoppingCart} />    
+        <Route path="*"  component={NoMatchPage} />
       </Switch>
     </BrowserRouter>
     )

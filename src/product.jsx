@@ -12,6 +12,7 @@ export default class Product extends Component{
       console.log('render of Product cart')
         
         return (
+           
             <div className="col-lg-6">
                 <div className="card m-2">
                 <div className="card-body">

@@ -1,4 +1,5 @@
 import React,{ Component } from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 class NavBar extends Component{
 render(){
@@ -14,8 +15,20 @@ render(){
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
       
         <li className="nav-item">
-          <a className="nav-link" href="/#">Home</a>
-        </li>    
+          <Link className="nav-link" to="/">Login</Link>
+        </li>   
+
+         <li className="nav-item">
+          <Link className="nav-link" to="/dashboard">Dashboard</Link>
+        </li> 
+
+        <li className="nav-item">
+          <Link className="nav-link" to="/customers">Customers</Link>
+        </li>  
+
+         <li className="nav-item">
+          <Link className="nav-link" to="/cart">Shopping Cart</Link>
+        </li>        
        
       </ul>     
     </div>

@@ -19,7 +19,7 @@ export default class App extends Component{
     return(
       
       <Router history={history}>
-      <NavBar isLoggedIn = {this.state.isLoggedIn}/>
+      <NavBar isLoggedIn = {this.state.isLoggedIn} updateIsLoggedInStatus={this.updateIsLoggedInStatus}/>
       <div className="container-fluid">
       <Switch>  {/* Use Switch to wrap your Route components */}       
         <Route path="/" exact render={(props)=><Login {...props} updateIsLoggedInStatus={this.updateIsLoggedInStatus}/>} />  {/* Use the `component` prop in React Router v5 */}

@@ -14,21 +14,22 @@ render(){
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
       
-        <li className="nav-item">
+      {!this.props.isLoggedIn ? ( <li className="nav-item">
           <NavLink className="nav-link" activeClassName="active" exact to="/">Login</NavLink>
-        </li>   
+        </li>  ) :"" }
+        
 
-         <li className="nav-item">
+        {this.props.isLoggedIn ? ( <li className="nav-item">
           <NavLink className="nav-link" activeClassName="active"  to="/dashboard">Dashboard</NavLink>
-        </li> 
-
-        <li className="nav-item">
+        </li> ):"" }
+        
+        {this.props.isLoggedIn ? ( <li className="nav-item">
           <NavLink className="nav-link" activeClassName="active"  to="/customers">Customers</NavLink>
-        </li>  
-
-         <li className="nav-item">
+        </li>):""}
+       
+        {this.props.isLoggedIn ? (  <li className="nav-item">
           <NavLink className="nav-link" activeClassName="active" to="/cart">Shopping Cart</NavLink>
-        </li>        
+        </li>  ):""}             
        
       </ul>     
     </div>

@@ -7,11 +7,17 @@ import { Route, Switch,BrowserRouter } from "react-router-dom";
 import CustomersList from "./CustomersList"
 import NoMatchPage from "./NoMatchPage"
 export default class App extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      isLoggedIn:false
+    };
+  }
    render(){
     return(
       
       <BrowserRouter>
-      <NavBar />
+      <NavBar isLoggedIn = {this.state.isLoggedIn}/>
       <div className="container-fluid">
       <Switch>  {/* Use Switch to wrap your Route components */}       
         <Route path="/" exact component={Login} />  {/* Use the `component` prop in React Router v5 */}

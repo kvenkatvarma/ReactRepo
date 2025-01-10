@@ -6,6 +6,8 @@ import Dashboard from "./Dashboard"
 import { Route, Switch,BrowserRouter } from "react-router-dom"; 
 import CustomersList from "./CustomersList"
 import NoMatchPage from "./NoMatchPage"
+import history from "./history"
+import { Router } from "react-router-dom/cjs/react-router-dom.min"
 export default class App extends Component{
   constructor(props){
     super(props);
@@ -16,7 +18,7 @@ export default class App extends Component{
    render(){
     return(
       
-      <BrowserRouter>
+      <Router history={history}>
       <NavBar isLoggedIn = {this.state.isLoggedIn}/>
       <div className="container-fluid">
       <Switch>  {/* Use Switch to wrap your Route components */}       
@@ -27,7 +29,7 @@ export default class App extends Component{
         <Route path="*"  component={NoMatchPage} />
       </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
     )
    }
    updateIsLoggedInStatus=(status)=>{

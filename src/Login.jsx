@@ -1,4 +1,5 @@
 import React,{Component} from "react";
+import history from "./history"
 export default class Login extends Component{
     constructor(props)
     {
@@ -45,6 +46,8 @@ onLoginClick=async ()=>
         }) 
         //Call the App component updateIsLoggedInStatus method
         this.props.updateIsLoggedInStatus(true);
+        //navigate to dashboard
+        history.replace("/dashboard");
     }
     else
     {
@@ -53,20 +56,5 @@ onLoginClick=async ()=>
             message : <span className="text-danger">Invalid Login, Please try again</span>
         })
     }
-
-    // if(this.state.email == "admin@test.com" && this.state.password == "admin123")
-    // {
-    //     //Success message to user
-    //     this.setState({
-    //         message : <span className="text-success">Successfully Logged in</span>
-    //     })
-    // }
-    // else
-    // {
-    //     //error message
-    //     this.setState({
-    //         message : <span className="text-danger">Invalid Login, Please try again</span>
-    //     })
-    // }
 }
 }

@@ -3,21 +3,21 @@ class Register extends Component{
     constructor(props){
         super(props);
         this.state={
-            email:"",password:"",fullName:"",dateOfBirth:"",gender:"",
-            controls:["email","password","fullName","dateOfBirth","gender"],
+            email:"",password:"",fullName:"",dateOfBirth:"",gender:"",country:"",
+            controls:["email","password","fullName","dateOfBirth","gender","country"],
             errors:{
                 email:[],
                 password:[],
                 fullName:[],
                 dateOfBirth:[],
-                gender:[],
+                gender:[],country:[],
             },
             message:"",
             dirty:{
                 email:false,
                 password:false,
                 fullName:false,
-                dateOfBirth:false,gender:false
+                dateOfBirth:false,gender:false,country:false
             }
         };
     }
@@ -110,7 +110,28 @@ class Register extends Component{
                     </div>
                     
                     </div>
-                   
+                    <div className="form-group form-row">
+                    <label className="col-lg-4 col-form-label" htmlFor="country" >Country</label>
+                    <div className="col-lg-8">
+                         <select className="form-control" value={this.state.country} onChange={(event)=>{
+                            let dirty = this.state.dirty;
+                            dirty.country = true;
+                            this.setState({country:event.target.value,dirty:dirty},this.validate)
+                         }} onBlur={(event)=>{
+                            let dirty = this.state.dirty;
+                            dirty.country = true;
+                            this.setState({dirty:dirty})
+                         }}>
+                            <option value="">Please Select</option>
+                            <option value="India">India</option>
+                            <option value="Aus">Australia</option>
+                            <option value="NZ">New zealand</option>
+                            <option value="USA">USA</option>
+                            <option value="UK">UK</option>
+                         </select>
+
+                    </div>
+                    </div>
                    <div className="row">
                        <div className="col-lg-12">
                         <div className="text-right">{this.state.message}</div>
@@ -174,6 +195,12 @@ class Register extends Component{
                              errors[control].push("Gender cannot be blank");
                             } 
                         break;
+                        case "country":
+                            if(!this.state[control])
+                                {
+                                 errors[control].push("Country cannot be blank");
+                                } 
+                            break;
             default:
 
              break;

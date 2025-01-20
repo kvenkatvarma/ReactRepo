@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import history from "./history"
+
 export default class Login extends Component{
     constructor(props)
     {
@@ -52,7 +52,7 @@ onLoginClick=async ()=>
         //Call the App component updateIsLoggedInStatus method
         this.props.updateIsLoggedInStatus(true);
         //navigate to dashboard
-        history.replace("/dashboard");
+        this.props.history.replace("/dashboard");
     }
     else
     {

@@ -6,8 +6,7 @@ import Dashboard from "./Dashboard"
 import { Route, Switch,BrowserRouter } from "react-router-dom"; 
 import CustomersList from "./CustomersList"
 import NoMatchPage from "./NoMatchPage"
-import history from "./history"
-import { Router } from "react-router-dom/cjs/react-router-dom.min"
+import { HashRouter } from "react-router-dom/cjs/react-router-dom.min"
 import SideBar from "./SideBar"
 import ProductById from "./ProductById"
 export default class App extends Component{
@@ -20,7 +19,7 @@ export default class App extends Component{
    render(){
     return(
       
-      <Router history={history}>
+      <HashRouter>
       <NavBar isLoggedIn = {this.state.isLoggedIn} updateIsLoggedInStatus={this.updateIsLoggedInStatus}/>
       <div className="container-fluid">
         <div className="row">
@@ -42,8 +41,8 @@ export default class App extends Component{
           </div>
         </div>
     
-      </div>
-    </Router>
+      </div> 
+    </HashRouter>
     )
    }
    updateIsLoggedInStatus=(status)=>{

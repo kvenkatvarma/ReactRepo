@@ -47,7 +47,8 @@ onLogoutClick=(event)=>{
   event.preventDefault();
   this.props.updateIsLoggedInStatus(false);
    //navigate to login
-   history.replace("/");
+   document.location.hash = "/";
+   //history.replace("/");
 }
 }
 export default NavBar;

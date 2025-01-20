@@ -12,6 +12,12 @@ class Register extends Component{
                 dateOfBirth:[],
             },
             message:"",
+            dirty:{
+                email:false,
+                password:false,
+                fullName:false,
+                dateOfBirth:false,
+            }
         };
     }
     render(){
@@ -22,8 +28,14 @@ class Register extends Component{
                     <div className="form-group form-row">
                       <label className="col-lg-4 col-form-label" htmlFor="email">Email</label>
                       <div className="col-lg-8">
-                        <input type="text" className="form-control" id="email" value={this.state.email} onChange={(event)=>{
-                            this.setState({email:event.target.value},this.validate);
+                        <input type="text" autoFocus className="form-control" onBlur={(event)=>{
+                            let dirty = this.state.dirty;
+                            dirty.email = true;
+                            this.setState({dirty:dirty},this.validate)
+                        }} id="email" value={this.state.email} onChange={(event)=>{
+                            let dirty = this.state.dirty;
+                            dirty.email =true;
+                            this.setState({email:event.target.value,dirty:dirty},this.validate);
                            
                         }}/>
                       </div>
@@ -32,8 +44,14 @@ class Register extends Component{
                     <div className="form-group form-row">
                       <label className="col-lg-4 col-form-label" htmlFor="password">Password</label>
                       <div className="col-lg-8">
-                        <input type="password" className="form-control" id="password" value={this.state.password} onChange={(event)=>{
-                            this.setState({password:event.target.value},this.validate);
+                        <input type="password" className="form-control" id="password" onBlur={(event)=>{
+                            let dirty = this.state.dirty;
+                            dirty.password = true;
+                            this.setState({dirty:dirty},this.validate)
+                        }} value={this.state.password} onChange={(event)=>{
+                               let dirty = this.state.dirty;
+                               dirty.email =true;
+                            this.setState({password:event.target.value,dirty:dirty},this.validate);
                            
                         }}/>
                       </div>
@@ -42,8 +60,14 @@ class Register extends Component{
                     <div className="form-group form-row">
                       <label className="col-lg-4 col-form-label" htmlFor="fullname">Full Name</label>
                       <div className="col-lg-8">
-                        <input type="text" className="form-control" id="fullname" value={this.state.fullName} onChange={(event)=>{
-                            this.setState({fullName:event.target.value},this.validate);
+                        <input type="text" className="form-control" id="fullname" onBlur={(event)=>{
+                            let dirty = this.state.dirty;
+                            dirty.fullName = true;
+                            this.setState({dirty:dirty},this.validate)
+                        }} value={this.state.fullName} onChange={(event)=>{
+                               let dirty = this.state.dirty;
+                               dirty.email =true;
+                            this.setState({fullName:event.target.value,dirty:dirty},this.validate);
                           
                         }}/>
                       </div>
@@ -52,8 +76,14 @@ class Register extends Component{
                     <div className="form-group form-row">
                       <label className="col-lg-4 col-form-label" htmlFor="dateOfBirth">Date of Birth</label>
                       <div className="col-lg-8">
-                        <input type="date" className="form-control" id="dateOfBirth" value={this.state.dateOfBirth} onChange={(event)=>{
-                            this.setState({dateOfBirth:event.target.value},this.validate);
+                        <input type="date" className="form-control" id="dateOfBirth" onBlur={(event)=>{
+                            let dirty = this.state.dirty;
+                            dirty.dateOfBirth = true;
+                            this.setState({dirty:dirty},this.validate)
+                        }} value={this.state.dateOfBirth} onChange={(event)=>{
+                               let dirty = this.state.dirty;
+                               dirty.email =true;
+                            this.setState({dateOfBirth:event.target.value,dirty:dirty},this.validate);
                            
                         }}/>
                       </div>
@@ -67,9 +97,16 @@ class Register extends Component{
                           </div>
                           <ul className="text-danger">
                             {Object.keys(this.state.errors).map((control)=>{
+                                if(this.state.dirty[control])
+                                {
                                      return this.state.errors[control].map((err)=>{
                                        return <li key={err}>{err}</li>
                                      })
+                                }
+                                else
+                                {
+                                    return "";
+                                }
                             })}
                           </ul>
                        </div>
@@ -118,6 +155,11 @@ class Register extends Component{
     };
     onRegisterClick=()=>
     {
+        var dirty = this.state.dirty;
+        Object.keys(dirty).forEach((control)=>{
+            dirty[control] = true;
+        });
+        this.setState({dirty})
         this.validate();
         if(this.isValid())
         {

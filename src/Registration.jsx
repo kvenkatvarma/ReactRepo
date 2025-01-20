@@ -11,6 +11,7 @@ class Register extends Component{
                 fullName:[],
                 dateOfBirth:[],
             },
+            message:"",
         };
     }
     render(){
@@ -60,6 +61,7 @@ class Register extends Component{
 
                    <div className="row">
                        <div className="col-lg-12">
+                        <div className="text-right">{this.state.message}</div>
                           <div className="text-right">
                             <button className="btn btn-success m-2" onClick={this.onRegisterClick}>Register</button>
                           </div>
@@ -114,6 +116,27 @@ class Register extends Component{
         });
         this.setState({errors})
     };
+    onRegisterClick=()=>
+    {
+        this.validate();
+        if(this.isValid())
+        {
+              this.setState({message:"Valid"});
+        }
+        else{
+            this.setState({message:"InValid"});
+        }
+    }
+    isValid=()=>{
+        let valid = true;
+       for(let control in this.state.errors)
+       {
+        if(control.length > 0){
+            valid = false;
+        }
+       }
+        return valid;
+    }
 }
 
 export default Register;

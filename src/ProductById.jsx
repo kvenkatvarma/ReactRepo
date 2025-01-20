@@ -72,6 +72,7 @@ export default class ProductById extends Component{
           
     }
      componentDidMount=async()=>{
+        document.title = "Product - eCommerce"
        var id = this.props.match.params.id;
        var response = await fetch(`https://jsonplaceholder.typicode.com/users?id=${id}`,{method:"GET"});
        var body = await response.json(); 

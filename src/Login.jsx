@@ -36,6 +36,9 @@ render(){
     </div>
     );
 }
+componentDidMount(){
+    document.title = "Login-eCommerce"
+}
 onLoginClick=async ()=>
 {
     var response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${this.state.email}&name=${this.state.password}`,{method:"GET"});

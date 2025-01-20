@@ -36,6 +36,7 @@ export default class ShoppingCart extends Component{
     //Executes after constructor and render() including the life cycle of child components if any
      componentDidMount=async ()=>
     {
+        document.title = "Cart-eCommerce";
        var response = await fetch('https://jsonplaceholder.typicode.com/posts',{method:"GET"});   
        var prods = await response.json();   
        this.setState({

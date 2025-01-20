@@ -9,6 +9,7 @@ import NoMatchPage from "./NoMatchPage"
 import { HashRouter } from "react-router-dom/cjs/react-router-dom.min"
 import SideBar from "./SideBar"
 import ProductById from "./ProductById"
+import createCustomer from "./InsertCustomer"
 export default class App extends Component{
   constructor(props){
     super(props);
@@ -36,6 +37,7 @@ export default class App extends Component{
             <Route path="/customers" exact component={CustomersList} />
             <Route path="/cart" exact component={ShoppingCart} />    
             <Route path="/product/:id" exact component={ProductById} />  
+            <Route path="/new-customer" exact component={createCustomer} />  
             <Route path="*"  component={NoMatchPage} />
          </Switch>
           </div>

@@ -1,16 +1,14 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export default class CustomersList extends Component
 {
-    state ={pageTitle:"Customers",customersCount:5,
-        customers:[
-            {id:1,name:"Venkat",phone:"123456",address:{city:"Hyd"},photo:"https://picsum.photos/id/1010/60"},
-            {id:2,name:"Durga",phone:"787878",address:{city:"Hyd"},photo:"https://picsum.photos/id/1011/60"},
-            {id:3,name:"Nitya",phone:"567698",address:{city:"Hyd"},photo:"https://picsum.photos/id/1012/60"},
-            {id:4,name:"ABC",phone:null,address:{city:"ABC"},photo:"https://picsum.photos/id/1013/60"},
-            {id:5,name:"DEF",phone:null,address:{city:"Upl"},photo:"https://picsum.photos/id/1014/60"}       
-         ]
-    };
+    constructor(props){
+        super(props);
+        this.state ={pageTitle:"Customers",customersCount:5,
+            customers:[]
+        };
+    }   
 
     render()
     {
@@ -18,7 +16,7 @@ export default class CustomersList extends Component
         <div>
             <h4 className="m-1 p-1">{this.state.pageTitle}
             <span className="badge badge-secondary m-2">{this.state.customersCount}</span>
-            <button className="btn btn-info" onClick={this.onRefreshClick}>Refresh</button>
+            <Link to="/new-customer" className="btn btn-primary">New Customer</Link>
             </h4>
             <table className="table">
                 <thead>
@@ -38,14 +36,16 @@ export default class CustomersList extends Component
         )
     }
 
-    componentDidMount(){
-        document.title = "Customers-eCommerce"
+    componentDidMount=async ()=>{
+        document.title = "Customers-eCommerce";
+       let response = await fetch('https://jsonplaceholder.typicode.com/posts',{method:"GET"});
+       let body = await response.json();
+       
+       this.setState({
+        customers:body
+       })
     }
-    onRefreshClick=()=>{
-        this.setState({
-            customersCount:7
-        });
-    }
+  
     getPhoneToRender=(phone)=>
     {
        return phone ? phone :<div className="bg-warning p-2 text-center">No Phone</div>
@@ -62,9 +62,9 @@ export default class CustomersList extends Component
                             <button className="btn btn-sm btn-secondary" onClick={()=>{this.onChangePictureClick(cust,index);}}>Change Picture</button>
                         </div>
                     </td>
-                    <td>{cust.name}</td>
+                    <td>{cust.body}</td>
                     <td>{this.getPhoneToRender(cust.phone)}</td>
-                    <td>{cust.address.city}</td>
+                    <td>{cust.title}</td>
                 </tr>
              )
             })

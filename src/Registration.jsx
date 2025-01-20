@@ -3,20 +3,21 @@ class Register extends Component{
     constructor(props){
         super(props);
         this.state={
-            email:"",password:"",fullName:"",dateOfBirth:"",
-            controls:["email","password","fullName","dateOfBirth"],
+            email:"",password:"",fullName:"",dateOfBirth:"",gender:"",
+            controls:["email","password","fullName","dateOfBirth","gender"],
             errors:{
                 email:[],
                 password:[],
                 fullName:[],
                 dateOfBirth:[],
+                gender:[],
             },
             message:"",
             dirty:{
                 email:false,
                 password:false,
                 fullName:false,
-                dateOfBirth:false,
+                dateOfBirth:false,gender:false
             }
         };
     }
@@ -89,6 +90,27 @@ class Register extends Component{
                       </div>
                     </div>
 
+                    <div className="form-group form-row">
+                    <label className="col-lg-4" >Gender</label>
+                    <div className="col-lg-8">
+                        <div className="form-check">
+                          <input type="radio" id="male" name="gender" className="form-check-input" value="male" onBlur={(event)=>{ 
+                            let dirty = this.state.dirty;dirty.gender = true;
+                            this.setState({gender:event.target.value,dirty:dirty})}} onChange={(event)=>{ 
+                            let dirty = this.state.dirty;dirty.gender = true;
+                            this.setState({gender:event.target.value,dirty:dirty})}} checked={this.state.gender === 'male' ?true:false}></input>
+                        <label className="form-check-label" htmlFor="male">Male</label>
+                        </div>
+                       
+                        <div className="form-check">
+                          <input type="radio" id="female" name="gender" className="form-check-input" value="female" onBlur={(event)=>{   let dirty = this.state.dirty;dirty.gender = true;this.setState({gender:event.target.value,dirty:dirty})}} onChange={(event)=>{   let dirty = this.state.dirty;dirty.gender = true;this.setState({gender:event.target.value,dirty:dirty})}} checked={this.state.gender === 'female' ?true:false}></input>
+                          <label className="form-check-label" htmlFor="female">FeMale</label>
+                        </div>
+                       
+                    </div>
+                    
+                    </div>
+                   
                    <div className="row">
                        <div className="col-lg-12">
                         <div className="text-right">{this.state.message}</div>
@@ -146,6 +168,12 @@ class Register extends Component{
                          errors[control].push("Date of Birth cannot be blank");
                         } 
                     break;
+                    case "gender":
+                        if(!this.state[control])
+                            {
+                             errors[control].push("Gender cannot be blank");
+                            } 
+                        break;
             default:
 
              break;

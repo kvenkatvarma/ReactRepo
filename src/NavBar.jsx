@@ -19,6 +19,10 @@ render(){
           <NavLink className="nav-link" activeClassName="active" exact to="/">Login</NavLink>
         </li>  ) :"" }
         
+        {!this.props.isLoggedIn ? ( <li className="nav-item">
+          <NavLink className="nav-link" activeClassName="active" exact to="/register">Register</NavLink>
+        </li>  ) :"" }
+        
 
         {this.props.isLoggedIn ? ( <li className="nav-item">
           <NavLink className="nav-link" activeClassName="active"  to="/dashboard">Dashboard</NavLink>

@@ -1,16 +1,14 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export default class Product extends Component{
     constructor(props)
     {
-      super(props);      
-      console.log('constructor of Product cart')
+      super(props);   
       this.state={product:this.props.product};
     }
    
-     render(){
-      console.log('render of Product cart')
-        
+     render(){        
         return (
            
             <div className="col-lg-6">
@@ -34,23 +32,13 @@ export default class Product extends Component{
                             <button className="btn btn-outline-success" onClick={()=>{this.props.onDecrement(this.state.product,0);}}>-</button>
                         </div>
                     </div>
-                    <div className="float-right">{this.props.children}</div>                    
+                    <div className="float-right">
+                        <Link to={`product/${this.state.product.id}`} className="mr-2" >Details</Link>
+                        {this.props.children}
+                        </div>                    
                 </div>
                 </div>            
             </div>
         );
-     }
-     componentDidMount()
-    {
-        console.log('componentDidMount of product');
-        
-    }
-    componentDidUpdate()
-    {
-        console.log('componentDidUpdate of product cart');
-    }
-    componentWillUnmount()
-    {
-        console.log('componentWillUnmount of product');
-    }
+     }   
 }

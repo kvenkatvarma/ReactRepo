@@ -9,6 +9,7 @@ import NoMatchPage from "./NoMatchPage"
 import history from "./history"
 import { Router } from "react-router-dom/cjs/react-router-dom.min"
 import SideBar from "./SideBar"
+import ProductById from "./ProductById"
 export default class App extends Component{
   constructor(props){
     super(props);
@@ -35,6 +36,7 @@ export default class App extends Component{
             <Route path="/dashboard" exact component={Dashboard} />
             <Route path="/customers" exact component={CustomersList} />
             <Route path="/cart" exact component={ShoppingCart} />    
+            <Route path="/product/:id" exact component={ProductById} />  
             <Route path="*"  component={NoMatchPage} />
          </Switch>
           </div>

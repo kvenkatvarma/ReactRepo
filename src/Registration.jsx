@@ -88,7 +88,25 @@ class Register extends Component{
                  errors[control].push("Email cannot be blank");
                 } 
             break;
+           case "password":
+            if(!this.state[control])
+                {
+                 errors[control].push("Password cannot be blank");
+                } 
+            break;
+            case "fullName":
+                if(!this.state[control])
+                    {
+                     errors[control].push("fullName cannot be blank");
+                    } 
+                break;
 
+                case "dateOfBirth":
+                    if(!this.state[control])
+                        {
+                         errors[control].push("Date of Birth cannot be blank");
+                        } 
+                    break;
             default:
 
              break;

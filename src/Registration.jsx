@@ -39,6 +39,9 @@ class Register extends Component{
                             this.setState({email:event.target.value,dirty:dirty},this.validate);
                            
                         }}/>
+                        <div className="text-danger">
+                              {this.state.errors.email[0] && this.state.dirty.email ? this.state.errors["email"]:""}
+                        </div>
                       </div>
                     </div>
 
@@ -55,6 +58,9 @@ class Register extends Component{
                             this.setState({password:event.target.value,dirty:dirty},this.validate);
                            
                         }}/>
+                        <div className="text-danger">
+                              {this.state.errors.password[0] && this.state.dirty.password ? this.state.errors["password"]:""}
+                        </div>
                       </div>
                     </div>
 
@@ -71,6 +77,9 @@ class Register extends Component{
                             this.setState({fullName:event.target.value,dirty:dirty},this.validate);
                           
                         }}/>
+                        <div className="text-danger">
+                              {this.state.errors.fullName[0] && this.state.dirty.fullName ? this.state.errors["fullName"]:""}
+                        </div>
                       </div>
                     </div>
 
@@ -87,6 +96,9 @@ class Register extends Component{
                             this.setState({dateOfBirth:event.target.value,dirty:dirty},this.validate);
                            
                         }}/>
+                        <div className="text-danger">
+                              {this.state.errors.dateOfBirth[0] && this.state.dirty.dateOfBirth ? this.state.errors["dateOfBirth"]:""}
+                        </div>
                       </div>
                     </div>
 
@@ -106,7 +118,9 @@ class Register extends Component{
                           <input type="radio" id="female" name="gender" className="form-check-input" value="female" onBlur={(event)=>{   let dirty = this.state.dirty;dirty.gender = true;this.setState({gender:event.target.value,dirty:dirty})}} onChange={(event)=>{   let dirty = this.state.dirty;dirty.gender = true;this.setState({gender:event.target.value,dirty:dirty})}} checked={this.state.gender === 'female' ?true:false}></input>
                           <label className="form-check-label" htmlFor="female">FeMale</label>
                         </div>
-                       
+                        <div className="text-danger">
+                              {this.state.errors.gender[0] && this.state.dirty.gender ? this.state.errors["gender"]:""}
+                        </div>
                     </div>
                     
                     </div>
@@ -129,7 +143,9 @@ class Register extends Component{
                             <option value="USA">USA</option>
                             <option value="UK">UK</option>
                          </select>
-
+                         <div className="text-danger">
+                              {this.state.errors.country[0] && this.state.dirty.country ? this.state.errors["country"]:""}
+                        </div>
                     </div>
                     </div>
 
@@ -148,6 +164,9 @@ class Register extends Component{
                                 }}></input>
                                 <label className="form-check-label" htmlFor="receivedNewsLetters">Receive News Letters</label>
                             </div>
+                            <div className="text-danger">
+                              {this.state.errors.receiveNewsLetters[0] && this.state.dirty.receiveNewsLetters ? this.state.errors["receiveNewsLetters"]:""}
+                        </div>
                         </div>
                     </div>
 

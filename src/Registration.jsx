@@ -3,21 +3,21 @@ class Register extends Component{
     constructor(props){
         super(props);
         this.state={
-            email:"",password:"",fullName:"",dateOfBirth:"",gender:"",country:"",
-            controls:["email","password","fullName","dateOfBirth","gender","country"],
+            email:"",password:"",fullName:"",dateOfBirth:"",gender:"",country:"",receiveNewsLetters:false,
+            controls:["email","password","fullName","dateOfBirth","gender","country","receiveNewsLetters"],
             errors:{
                 email:[],
                 password:[],
                 fullName:[],
                 dateOfBirth:[],
-                gender:[],country:[],
+                gender:[],country:[],receiveNewsLetters:[]
             },
             message:"",
             dirty:{
                 email:false,
                 password:false,
                 fullName:false,
-                dateOfBirth:false,gender:false,country:false
+                dateOfBirth:false,gender:false,country:false,receiveNewsLetters:false
             }
         };
     }
@@ -132,6 +132,25 @@ class Register extends Component{
 
                     </div>
                     </div>
+
+                    <div className="form-group form-row">
+                        <label className="col-lg-4" htmlFor="country" ></label>
+                        <div className="col-lg-8">
+                            <div className="form-check">
+                                <input type="checkbox" className="form-check-input" id="receivedNewsLetters" value="true" checked={this.state.receiveNewsLetters} onChange={(event)=>{
+                                    let dirty = this.state.dirty;
+                                    dirty.receiveNewsLetters = true;
+                                    this.setState({receiveNewsLetters:event.target.checked,dirty:dirty},this.validate)
+                                }} onBlur={(event)=>{
+                                    let dirty = this.state.dirty;
+                                    dirty.receiveNewsLetters = true;
+                                    this.setState({dirty:dirty})
+                                }}></input>
+                                <label className="form-check-label" htmlFor="receivedNewsLetters">Receive News Letters</label>
+                            </div>
+                        </div>
+                    </div>
+
                    <div className="row">
                        <div className="col-lg-12">
                         <div className="text-right">{this.state.message}</div>

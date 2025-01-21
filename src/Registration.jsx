@@ -246,7 +246,7 @@ class Register extends Component{
         });
         this.setState({errors})
     };
-    onRegisterClick=()=>
+    onRegisterClick=async()=>
     {
         var dirty = this.state.dirty;
         Object.keys(dirty).forEach((control)=>{
@@ -256,7 +256,16 @@ class Register extends Component{
         this.validate();
         if(this.isValid())
         {
-              this.setState({message:"Valid"});
+            var user = {
+                email:this.state.email,password:this.state.password,fullName:this.state.fullName,
+                dateOfBirth:this.state.dateOfBirth,gender:this.state.gender,country:this.state.country,receiveNewsLetters:this.state.receiveNewsLetters
+            };
+             var response = await fetch('url',{method:"POST",body: JSON.stringify(user),headers:{"Content-type":"application/json"}});
+             let body =await response.json();
+             if(response.ok)
+             {
+          
+             }
         }
         else{
             this.setState({message:"InValid"});
